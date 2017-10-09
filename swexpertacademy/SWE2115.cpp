@@ -1,5 +1,5 @@
 //SW Expert
-//ID : 2105 // backtracking
+//ID : 2115 // bitmask, bruteforce
 //2017/10/09
 
 #include <cstdio>
