@@ -1,11 +1,10 @@
-//gold2 1525
 #include <cstdio>
 #include <queue>
 #include <vector>
 #include <string>
 #include <queue>
 using namespace std;
-vector<bool> visit(362881);
+int visit[362881];
 int dy[4] = {-1,1,0,0};
 int dx[4] = {0,0,1,-1},ans,a;
 int perm[10];
