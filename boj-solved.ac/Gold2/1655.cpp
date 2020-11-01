@@ -1,4 +1,3 @@
-//gold2 1655
 #include <cstdio>
 #include <queue>
 #include <functional>

@@ -1,4 +1,3 @@
-//gold2 17143
 #include <cstdio>
 #include <vector>
 using namespace std;

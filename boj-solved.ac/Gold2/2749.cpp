@@ -1,4 +1,3 @@
-//gold2 1766
 #include <cstdio>
 #include <queue>
 using namespace std;
