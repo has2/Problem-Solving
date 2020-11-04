@@ -1,7 +1,79 @@
-1 0 3
-4 2 5
-7 8 6
+#include <cstdio>
+#include <vector>
+#include <algorithm>
+using namespace std;
+struct Node;
+struct Node{
+    int left,right,h=0,lcnt=0,rcnt=0,from,to;
+    Node(){}
+    Node(int l,int r):left(l),right(r){}
+};
+int N,lc[10001],rc[10001],maxh,ans,ah,root;
+bool in[10001];
+vector<Node> tree;
+int sol(int node,int h){
+    if(node==-1) return 0;
+    tree[node].h=h;
+    if(h>maxh) maxh=h;
+    tree[node].lcnt = sol(tree[node].left,h+1);
+    tree[node].rcnt = sol(tree[node].right,h+1);
+    //printf("node:%d lcnt:%d, rcnt:%d, h:%d\n",node,tree[node].lcnt,tree[node].rcnt,h);
+    return tree[node].lcnt+tree[node].rcnt+1;
+}
 
-1 2 3 
-4 5 6 
-7 8 0
+void setPos(int node,int f,int t){
+    if(node==-1) return;
+    tree[node].from = f;
+    tree[node].to = t;
+    printf("node : %d, [%d,%d]\n",node,f,t);
+    setPos(tree[node].left,f,f+tree[node].lcnt+1);
+    setPos(tree[node].right,f+tree[node].lcnt+1,t);
+}
+
+int main(){
+    scanf("%d",&N);
+    for(int i=1;i<=N;i++) {
+        int a,b,c;
+        scanf("%d%d%d",&a,&b,&c);
+        lc[a] = b;
+        rc[a] = c;
+        in[b] = 1;
+        in[c] = 1;
+    }
+    for(int i=1;i<=N;i++) if(!in[i]) root = i;
+    tree.resize(N+1);
+    for(int i=1;i<=N;i++){
+        tree[i] = Node(lc[i],rc[i]);
+    }
+    sol(root,0);
+    setPos(root,0,N+1);
+    for(int i=0;i<=maxh;i++){
+        vector<int> slv;
+        for(int j=1;j<=N;j++){
+            if(tree[j].h==i) slv.push_back(j);
+        }
+        int len;
+        Node ll,rr;
+        if(slv.size()==1) len=1;
+        else {
+            ll = tree[slv.front()];
+            rr = tree[slv.back()];
+            len = N-(ll.from+ll.lcnt+N-rr.to+1+rr.rcnt);
+        }
+        printf("i : %d len : %d\n",i+1,len);
+        if(ans < len){
+            ans = len;
+            ah = i;
+        }
+    }
+    printf("%d %d",ah+1,ans);
+}
+
+7
+1 2 -1
+2 -1 3
+3 4 5
+4 -1 -1
+5 6 7
+6 -1 -1
+7 -1 -1
