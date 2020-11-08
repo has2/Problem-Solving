@@ -1,4 +1,3 @@
-//gold2 2887
 #include <cstdio>
 #include <vector>
 #include <queue>
