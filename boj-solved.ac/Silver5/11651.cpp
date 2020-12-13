@@ -8,4 +8,4 @@ int main(){
     for(int i=0;i<N;i++) scanf("%d%d",&a[i].second,&a[i].first);
     sort(a,a+N);
     for(int i=0;i<N;i++) printf("%d %d\n",a[i].second,a[i].first);
-}
+} 
