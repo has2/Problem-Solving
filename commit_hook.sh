@@ -16,6 +16,9 @@ read TYPE
 # TYPE=$4
 DATE=$(date +%Y%m%d)
 
+cp ../solving.cpp ../boj-solved.ac/${LEVEL}/${NUM}.cpp
+
+
 echo "LEVEL:${LEVEL}, NUM:${NUM}, NAME:${NAME}, TYPE:${TYPE}"
 
 echo "\
