@@ -10,7 +10,6 @@ read NAME
 
 echo -e "유형 : \c"
 read TYPE
-
 # LEVEL=$1
 # NUM=$2
 # NAME=$3
