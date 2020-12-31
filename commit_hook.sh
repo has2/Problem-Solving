@@ -55,7 +55,7 @@ else
  
     TITLE="[${PLATFORM}][Round #${ROUND}][Div.${DIV}] ${ALPHA} : ${NAME} (C++)"
 
-    DIRNAME=codeforces/Round#${ROUND}-Div.${DIV}
+    DIRNAME=codeforces/Round${ROUND}-Div.${DIV}
     GITLINK="https://github.com/has2/Problem-Solving/blob/master/${DIRNAME}/${ALPHA}.cpp"
 
 
