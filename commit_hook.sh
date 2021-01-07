@@ -73,7 +73,6 @@ DATE=$(date +%Y%m%d)
 
 
 
-
 echo ${TITLE}
 echo ${LINK}
 
@@ -87,13 +86,12 @@ ${LINK}
 
 
 
+
+
 [난이도] ${LEVEL} 
 [유형] ${TYPE} 
 
 [풀이] 
-
-
-
 
 ${GITLINK} \
 " > ../.gitmessage.txt
