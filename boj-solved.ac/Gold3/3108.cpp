@@ -1,59 +1,86 @@
+#include <iostream>
 #include <cstdio>
+#include <string>
 #include <vector>
 #include <algorithm>
 using namespace std;
-struct P {
-	int x,y;
-};
-struct Rec {
-	P l, r;
-	Rec(){}
-	Rec(P l, P r) :l(l), r(r) {}
-};
-Rec recs[1000];
-int N,ans,exist;
-vector<int> adj[1000];
-bool visit[1000];
-bool notadj(Rec a, Rec b) {
-	if(a.l.x > b.l.x) swap(a,b);
-	if ((a.l.x < b.l.x && a.l.y < b.l.y && a.r.y > b.r.y && a.r.x > b.r.x)
-		|| a.r.x < b.l.x
-		|| a.r.y < b.l.y
-		|| a.l.y > b.r.y) return 1;
-	return 0;
-}
 
-void dfs(int cur) {
-	visit[cur] = 1;
-	for (int nxt : adj[cur]) {
-		if (!visit[nxt]) dfs(nxt);
+struct Trie {
+	struct Node {
+		bool valid;
+		int child[26];
+		Node() {
+			for (int i = 0; i < 26; i++) child[i] = -1;
+		}
+	};
+	vector<Node> trie;
+	int root;
+	int init() {
+		puts("333");
+		Node a;
+		puts("3.5");
+		printf("size1:%d\n", trie.size());
+		trie.push_back(a);
+		printf("size2:%d\n", trie.size());
+		return (int)trie.size() - 1;
 	}
-}
+	Trie() {
+		root = init();
+	}
 
+	void insert(int node, int idx, string s) {
+		printf("node:%d\n", node);
+		if (idx == s.size()) {
+			trie[node].valid = true;
+			return;
+		}
+
+		int i = s[idx] - 'a';
+		puts("111");
+		int& next = trie[node].child[i];
+		printf("next1:%d\n", next);
+		if (next == -1) {
+			printf("next2:%d\n", next);
+			int k = init();
+			printf("k:%d\n", k);
+			next = k;
+		}
+		printf("next:%d\n", next);
+		insert(next, idx + 1, s);
+	}
+	// if(trie[node].child[i]==-1) {
+	//     int next = init();
+	//     trie[node].child[i] = next;
+	// }
+	// insert(trie[node].child[i],idx+1,s);
+	bool find(int node, int idx, string s) {
+		if (node == -1) return false;
+		if (idx == s.size()) {
+			return trie[node].valid;
+		}
+		int i = s[idx] - 'a';
+		int& next = trie[node].child[i];
+
+		return find(next, idx + 1, s);
+	}
+};
+int N, M;
+struct nd {
+	bool valid;
+	int child[26];
+	nd() {
+		for (int i = 0; i < 26; i++) child[i] = -1;
+	}
+};
 int main() {
-	scanf("%d", &N);
+	cin >> N >> M;
+	Trie trie;
+	//cout << "N : " << N << ", M : " << M << '\n';
 	for (int i = 0; i < N; i++) {
-		int x1, y1, x2, y2;
-		scanf("%d%d%d%d", &x1, &y1, &x2, &y2);
-		if ((x1 == 0|| x2==0) && (y1 <= 0 && 0 <= y2)) exist = 1;
-		if ((y1 == 0 || y2 == 0) && (x1 <= 0 && 0 <= x2)) exist = 1;
-		recs[i] = Rec({ x1,y1 }, { x2,y2 });
+		string a;
+		cin >> a;
+		//cout << "a : " << a << '\n';
+		trie.insert(0, 0, a);
 	}
-	for (int i = 0; i < N-1; i++) {
-		for (int j = i + 1; j < N; j++) {
-			if (!notadj(recs[i], recs[j])) {
-				adj[i].push_back(j);
-				adj[j].push_back(i);
-			}
-		}
-	}
-
-	int cnt = 0;
-	for (int i = 0; i < N; i++) {
-		if (!visit[i]) {
-			dfs(i);
-			cnt++;
-		}
-	}
-	printf("%d", exist ? cnt-1 : cnt);
+	cout << trie.find(0, 0, "asdf");
 }
