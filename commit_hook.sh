@@ -39,7 +39,7 @@ if [ ${PLATFORM} == ${BOJ} ];then
     echo -e "유형 : \c"
     read TYPE
 
-    TITLE="[${PLATFORM}][${LEVEL}] ${NUM} : ${NAME} ${LANGUAGE}"
+    TITLE="[${PLATFORM}][${LEVEL}] ${NUM} : ${NAME} (${LANGUAGE})"
     LINK="https://www.acmicpc.net/problem/${NUM}"
     GITLINK="https://github.com/has2/Problem-Solving/blob/master/boj-solved.ac/${LEVEL}/${NUM}.cpp"
 
