@@ -4,10 +4,23 @@ BOJ='BOJ/백준'
 CF='Codeforces'
 echo -e "플랫폼 선택 (1)=boj, (2)=codeforces : \c"
 read PLATFORM
+
 if [ ${PLATFORM} -eq 1 ]; then
     PLATFORM=${BOJ}
 elif [ ${PLATFORM} -eq 2 ]; then
     PLATFORM=${CF}
+else
+    echo "1과 2중 선택해주세요"
+    exit 1  
+fi
+
+
+echo -e "언어 선택 (1)=C++, (2)=Kotlin : \c"
+read LANGUAGE
+if [ ${LANGUAGE} -eq 1 ]; then
+    LANGUAGE="C++"
+elif [ ${LANGUAGE} -eq 2 ]; then
+    LANGUAGE="Kotlin"
 else
     echo "1과 2중 선택해주세요"
     exit 1  
@@ -26,7 +39,7 @@ if [ ${PLATFORM} == ${BOJ} ];then
     echo -e "유형 : \c"
     read TYPE
 
-    TITLE="[${PLATFORM}][${LEVEL}] ${NUM} : ${NAME} (C++)"
+    TITLE="[${PLATFORM}][${LEVEL}] ${NUM} : ${NAME} ${LANGUAGE}"
     LINK="https://www.acmicpc.net/problem/${NUM}"
     GITLINK="https://github.com/has2/Problem-Solving/blob/master/boj-solved.ac/${LEVEL}/${NUM}.cpp"
 
