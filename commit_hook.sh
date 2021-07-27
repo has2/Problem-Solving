@@ -2,15 +2,18 @@
 
 BOJ='BOJ/백준'
 CF='Codeforces'
-echo -e "플랫폼 선택 (1)=boj, (2)=codeforces : \c"
+PR='Programmers'
+echo -e "플랫폼 선택 (1)=boj, (2)=codeforces, (3)=programmers : \c"
 read PLATFORM
 
 if [ ${PLATFORM} -eq 1 ]; then
     PLATFORM=${BOJ}
 elif [ ${PLATFORM} -eq 2 ]; then
     PLATFORM=${CF}
+elif [ ${PLATFORM} -eq 3 ]; then
+    PLATFORM=${PR}
 else
-    echo "1과 2중 선택해주세요"
+    echo "1,2,3중 선택해주세요"
     exit 1  
 fi
 
@@ -45,6 +48,24 @@ if [ ${PLATFORM} == ${BOJ} ];then
 
     echo "PLATFORM:${PLATFORM}, LEVEL:${LEVEL}, NUM:${NUM}, NAME:${NAME}, TYPE:${TYPE}"
     cp ../solving.cpp ../boj-solved.ac/${LEVEL}/${NUM}.cpp
+elif [ ${PLATFORM} == ${PR} ]; then
+    echo -e "LEVEL : \c"
+    read LEVEL
+
+    echo -e "문제이름 : \c"
+    read NAME
+
+    echo -e "유형 : \c"
+    read TYPE
+
+    echo -e "링크 : \c"
+    read LINK
+    LEVEL="level${LEVEL}"
+    TITLE="[${PLATFORM}][${LEVEL}] ${NAME} (${LANGUAGE})"
+    GITLINK="https://github.com/has2/Problem-Solving/blob/master/programmers/${LEVEL}/${NAME}.cpp"
+
+    echo "PLATFORM:${PLATFORM}, LEVEL:${LEVEL}, NAME:${NAME}, TYPE:${TYPE}"
+    cp ../solving.cpp ../programmers/${LEVEL}/${NAME}.cpp
 else
     echo -e "ROUND : \c"
     read ROUND
