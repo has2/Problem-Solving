@@ -62,10 +62,10 @@ elif [ ${PLATFORM} == ${PR} ]; then
     read LINK
     LEVEL="level${LEVEL}"
     TITLE="[${PLATFORM}][${LEVEL}] ${NAME} (${LANGUAGE})"
+    NAME=${NAME//' '/_}
     GITLINK="https://github.com/has2/Problem-Solving/blob/master/programmers/${LEVEL}/${NAME}.cpp"
-
     echo "PLATFORM:${PLATFORM}, LEVEL:${LEVEL}, NAME:${NAME}, TYPE:${TYPE}"
-    cp ../solving.cpp "../programmers/${LEVEL}/${NAME//' '/_}.cpp"
+    cp ../solving.cpp "../programmers/${LEVEL}/${NAME}.cpp"
 else
     echo -e "ROUND : \c"
     read ROUND
