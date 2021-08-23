@@ -2,7 +2,7 @@
 
 BOJ='BOJ/백준'
 CF='Codeforces'
-PR='Programmers'
+PR='프로그래머스'
 echo -e "플랫폼 선택 (1)=boj, (2)=codeforces, (3)=programmers : \c"
 read PLATFORM
 
@@ -22,12 +22,16 @@ echo -e "언어 선택 (1)=C++, (2)=Kotlin : \c"
 read LANGUAGE
 if [ ${LANGUAGE} -eq 1 ]; then
     LANGUAGE="C++"
+    EXTENSION="cpp"
 elif [ ${LANGUAGE} -eq 2 ]; then
     LANGUAGE="Kotlin"
+    EXTENSION="kt"
 else
     echo "1과 2중 선택해주세요"
     exit 1  
 fi
+
+
 
 if [ ${PLATFORM} == ${BOJ} ];then
     echo -e "LEVEL : \c"
@@ -44,10 +48,10 @@ if [ ${PLATFORM} == ${BOJ} ];then
 
     TITLE="[${PLATFORM}][${LEVEL}] ${NUM} : ${NAME} (${LANGUAGE})"
     LINK="https://www.acmicpc.net/problem/${NUM}"
-    GITLINK="https://github.com/has2/Problem-Solving/blob/master/boj-solved.ac/${LEVEL}/${NUM}.cpp"
+    GITLINK="https://github.com/has2/Problem-Solving/blob/master/boj-solved.ac/${LEVEL}/${NUM}.${EXTENSION}"
 
     echo "PLATFORM:${PLATFORM}, LEVEL:${LEVEL}, NUM:${NUM}, NAME:${NAME}, TYPE:${TYPE}"
-    cp ../solving.cpp ../boj-solved.ac/${LEVEL}/${NUM}.cpp
+    cp ../solving.cpp ../boj-solved.ac/${LEVEL}/${NUM}.${EXTENSION}
 elif [ ${PLATFORM} == ${PR} ]; then
     echo -e "LEVEL : \c"
     read LEVEL
@@ -63,9 +67,9 @@ elif [ ${PLATFORM} == ${PR} ]; then
     LEVEL="level${LEVEL}"
     TITLE="[${PLATFORM}][${LEVEL}] ${NAME} (${LANGUAGE})"
     NAME=${NAME//' '/_}
-    GITLINK="https://github.com/has2/Problem-Solving/blob/master/programmers/${LEVEL}/${NAME}.cpp"
+    GITLINK="https://github.com/has2/Problem-Solving/blob/master/programmers/${LEVEL}/${NAME}.${EXTENSION}"
     echo "PLATFORM:${PLATFORM}, LEVEL:${LEVEL}, NAME:${NAME}, TYPE:${TYPE}"
-    cp ../solving.cpp "../programmers/${LEVEL}/${NAME}.cpp"
+    cp ../solving.cpp "../programmers/${LEVEL}/${NAME}.${EXTENSION}"
 else
     echo -e "ROUND : \c"
     read ROUND
@@ -90,7 +94,7 @@ else
     TITLE="[${PLATFORM}][Round #${ROUND}][Div.${DIV}] ${ALPHA} : ${NAME} (C++)"
 
     DIRNAME=codeforces/Round${ROUND}-Div.${DIV}
-    GITLINK="https://github.com/has2/Problem-Solving/blob/master/${DIRNAME}/${ALPHA}.cpp"
+    GITLINK="https://github.com/has2/Problem-Solving/blob/master/${DIRNAME}/${ALPHA}.${EXTENSION}"
 
 
     echo "PLATFORM:${PLATFORM}, ROUND:${ROUND}, DIVISION:${DIV}, ALPHA:${ALPHA}, NAME:${NAME}, TYPE:${TYPE}"
@@ -100,7 +104,7 @@ else
         echo "Directoy ../${DIRNAME} is not exist.. create DIR"
         mkdir ../${DIRNAME}
     fi
-    cp ../solving.cpp ../${DIRNAME}/${ALPHA}.cpp
+    cp ../solving.cpp ../${DIRNAME}/${ALPHA}.${EXTENSION}
 fi
 
 DATE=$(date +%Y%m%d)
