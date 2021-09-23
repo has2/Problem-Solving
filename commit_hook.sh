@@ -3,7 +3,8 @@
 BOJ='BOJ/백준'
 CF='Codeforces'
 PR='프로그래머스'
-echo -e "플랫폼 선택 (1)=boj, (2)=codeforces, (3)=programmers : \c"
+ST='Softeer/소프티어'
+echo -e "플랫폼 선택 (1)=boj, (2)=codeforces, (3)=programmers, (4)=softeer : \c"
 read PLATFORM
 
 if [ ${PLATFORM} -eq 1 ]; then
@@ -12,8 +13,10 @@ elif [ ${PLATFORM} -eq 2 ]; then
     PLATFORM=${CF}
 elif [ ${PLATFORM} -eq 3 ]; then
     PLATFORM=${PR}
+elif [ ${PLATFORM} -eq 4 ]; then
+    PLATFORM=${ST}
 else
-    echo "1,2,3중 선택해주세요"
+    echo "1,2,3,4중 선택해주세요"
     exit 1  
 fi
 
@@ -70,6 +73,25 @@ elif [ ${PLATFORM} == ${PR} ]; then
     GITLINK="https://github.com/has2/Problem-Solving/blob/master/programmers/${LEVEL}/${NAME}.${EXTENSION}"
     echo "PLATFORM:${PLATFORM}, LEVEL:${LEVEL}, NAME:${NAME}, TYPE:${TYPE}"
     cp ../solving.cpp "../programmers/${LEVEL}/${NAME}.${EXTENSION}"
+
+elif [ ${PLATFORM} == ${ST} ]; then
+    echo -e "LEVEL : \c"
+    read LEVEL
+
+    echo -e "문제이름 : \c"
+    read NAME
+
+    echo -e "유형 : \c"
+    read TYPE
+
+    echo -e "링크 : \c"
+    read LINK
+    LEVEL="level${LEVEL}"
+    TITLE="[${PLATFORM}][${LEVEL}] ${NAME} (${LANGUAGE})"
+    NAME=${NAME//' '/_}
+    GITLINK="https://github.com/has2/Problem-Solving/blob/master/softeer/${LEVEL}/${NAME}.${EXTENSION}"
+    echo "PLATFORM:${PLATFORM}, LEVEL:${LEVEL}, NAME:${NAME}, TYPE:${TYPE}"
+    cp ../solving.cpp "../softeer/${LEVEL}/${NAME}.${EXTENSION}"
 else
     echo -e "ROUND : \c"
     read ROUND
