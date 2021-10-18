@@ -1,3 +1,0 @@
-C:/Development/Github/Problem-Solving/CMakeFiles/h.dir
-C:/Development/Github/Problem-Solving/CMakeFiles/ALL_BUILD.dir
-C:/Development/Github/Problem-Solving/CMakeFiles/ZERO_CHECK.dir
